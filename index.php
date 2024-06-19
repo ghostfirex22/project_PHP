@@ -38,8 +38,8 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                     if ($_SESSION['login']['role'] == 'admin') {
                         echo 
-                        '<tr class="bg-blue-700 text-white text-3xl">
-                            <th colspan="6" class="py-4"><a href="InsererStagiaire.php" class="text-white">Ajouter</a></th>
+                        '<tr class="bg-yellow-500 text-white text-3xl">
+                            <th colspan="7" class="py-4 w-full"><a href="InsererStagiaire.php" class="text-white">Ajouter</a></th>
                         </tr>' 
                         ;
                     }
@@ -66,8 +66,9 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <td class="border border-blue-500 p-4"><?php echo $product['name']; ?></td>
                     <td class="border border-blue-500 p-4"><?php echo $product['type']; ?></td>
                     <td class="border border-blue-500 p-4"><?php echo $product['prix']; ?></td>
-                    <td class="border border-blue-500 p-4"><image src="<?php echo $product['image']; ?>" alt="there is no image for this product"></td>
-                    <img src="uploads\FIREX22.PNG" alt="khmoja">
+                    <td class="border border-blue-500 p-4">
+                        <image src="<?php echo $product['image']; ?>" alt="there is no image for this product" class="w-40 h-40 object-cover">
+                    </td>
                     <?php
                         if ($_SESSION['login']['role'] == 'admin') {
                             echo '
