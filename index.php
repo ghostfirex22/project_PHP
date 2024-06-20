@@ -32,19 +32,19 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 <body class="bg-gray-100">
     <div>
         <h1 class="w-full bg-blue-600 text-white font-bold text-5xl text-center py-4">Welcome to our shop</h1>
-        <div class="flex justify-between gap-5 bg-blue-800 py-3 px-2 items-center rounded-b-sm">
+        <div class="flex justify-between gap-5 shadow-black shadow-sm bg-blue-800 py-3 px-2 items-center rounded-b-sm">
             <p class="text-5xl text-white font-semibold">Name : <?php echo $_SESSION['login']['fullname'] ; ?></p>
             <div class="user flex gap-5 py-3 px-2">
                 <div class="flex justify-center">
                     <form action="logout.php">
-                        <button class="bg-red-500 text-white text-2xl px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-red-700 transition ease-out duration-150">LOG OUT</button>
+                        <button class="bg-red-500 text-white shadow-md shadow-black text-2xl px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-red-700 transition ease-out duration-150">LOG OUT</button>
                     </form>
                 </div>
                 <?php
                     if ($_SESSION['login']['role'] == 'admin') {
                         echo 
                         '<div class=" text-white text-3xl">
-                            <button class="bg-yellow-500 text-white text-2xl px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-yellow-200 transition ease-out duration-150">
+                            <button class="bg-yellow-500 text-white text-2xl shadow-md shadow-black px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-yellow-200 transition ease-out duration-150">
                                 <a href="addproduct.php" class="text-white">Ajouter</a>
                             </button>
                         </div>' 
@@ -80,8 +80,10 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <td class="border border-blue-500 p-4"><?php echo $product['name']; ?></td>
                     <td class="border border-blue-500 p-4"><?php echo $product['type']; ?></td>
                     <td class="border border-blue-500 p-4"><?php echo $product['prix']; ?></td>
-                    <td class="border border-blue-500 p-4">
-                        <image src="<?php echo $product['image']; ?>" alt="there is no image for this product" class="w-40 h-40 object-cover">
+                    <td class="border border-blue-500 p-4 w-48">
+                        <div class="w-full h-full">
+                            <image src="<?php echo $product['image']; ?>" alt="there is no image for this product" class="h-full w-full object-cover">
+                        </div>
                     </td>
                     <?php
                         if ($_SESSION['login']['role'] == 'admin') {
@@ -101,7 +103,10 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                         }
                         ?>
                     <td class="border border-blue-500 p-4">
-                        <button type="submit" name="comment" class="bg-blue-400 text-white px-4 py-2 rounded cursor-pointe hover:bg-blue-600 transition ease-out duration-150">Comments</button>
+                        <form action="comments.php" method="post">
+                            <input type="hidden" name="id_G" value="<?php echo $product['id_G']; ?>">
+                            <button type="submit" class="bg-blue-400 text-white px-4 py-2 rounded cursor-pointe hover:bg-blue-600 transition ease-out duration-150">Comments</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>
