@@ -43,10 +43,8 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                     if ($_SESSION['login']['role'] == 'admin') {
                         echo 
-                        '<div class=" text-white text-3xl">
-                            <button class="bg-yellow-500 text-white text-2xl shadow-md shadow-black px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-yellow-200 transition ease-out duration-150">
-                                <a href="addproduct.php" class="text-white">Ajouter</a>
-                            </button>
+                        '<div class=" text-white text-3xl py-3">
+                            <a href="addproduct.php" class="bg-yellow-500 text-white text-2xl shadow-md shadow-black px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-yellow-200 transition ease-out duration-150"> ajouter</a>
                         </div>' 
                         ;
                     }
