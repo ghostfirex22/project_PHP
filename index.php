@@ -27,23 +27,36 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.tailwindcss.com">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Liste des Stagiaires</title>
+    <title>shop</title>
 </head>
 <body class="bg-gray-100">
-    <h1 class="w-full bg-blue-600 text-white font-bold text-5xl text-center py-4">Welcome to our shop</h1>
-
-    <div class="container mx-auto mt-8">
-        <table class="table-auto border-collapse w-full text-center">
-            <thead>
+    <div>
+        <h1 class="w-full bg-blue-600 text-white font-bold text-5xl text-center py-4">Welcome to our shop</h1>
+        <div class="flex justify-between gap-5 bg-blue-800 py-3 px-2 items-center rounded-b-sm">
+            <p class="text-5xl text-white font-semibold">Name : <?php echo $_SESSION['login']['fullname'] ; ?></p>
+            <div class="user flex gap-5 py-3 px-2">
+                <div class="flex justify-center">
+                    <form action="logout.php">
+                        <button class="bg-red-500 text-white text-2xl px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-red-700 transition ease-out duration-150">LOG OUT</button>
+                    </form>
+                </div>
                 <?php
                     if ($_SESSION['login']['role'] == 'admin') {
                         echo 
-                        '<tr class="bg-yellow-500 text-white text-3xl">
-                            <th colspan="7" class="py-4 w-full"><a href="InsererStagiaire.php" class="text-white">Ajouter</a></th>
-                        </tr>' 
+                        '<div class=" text-white text-3xl">
+                            <button class="bg-yellow-500 text-white text-2xl px-8 py-4 rounded cursor-pointer hover:text-white hover:bg-yellow-200 transition ease-out duration-150">
+                                <a href="addproduct.php" class="text-white">Ajouter</a>
+                            </button>
+                        </div>' 
                         ;
                     }
                 ?>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto mt-8">
+        <table class="table-auto border-collapse w-full text-center">
+            <thead>
                 <tr class="bg-blue-600 text-white">
                     <th class="border border-blue-500 p-4">id</th>
                     <th class="border border-blue-500 p-4">Name</th>
@@ -57,6 +70,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <th class="border border-blue-500 p-4">Supprimer</th>' ;
                     }
                 ?>
+                    <th class="border border-blue-500 p-4">Comments</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,27 +89,26 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                             <td class="border border-blue-500 p-4">
                                 <form action="modifier.php" method="post">
                                     <input type="hidden" name="id_G" value="' . $product['id_G'] . '">
-                                    <button type="submit" name="modify" class="bg-green-500 text-white px-4 py-2 rounded">Modifier</button>
+                                    <button type="submit" name="modify" class="bg-green-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 transition ease-out duration-150">Modifier</button>
                                 </form>
                             </td>
                             <td class="border border-blue-500 p-4">
                                 <form action="delete.php" method="post">
                                     <input type="hidden" name="id_G" value="' . $product['id_G'] . '">
-                                    <button type="submit" name="delete" id="delete" class="bg-red-500 text-white px-4 py-2 rounded" onclick="return confirmDelete()">Delete</button>
+                                    <button type="submit" name="delete" id="delete" class="bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-700 transition ease-out duration-150" onclick="return confirmDelete()">Delete</button>
                                 </form>
                             </td>';
                         }
                         ?>
+                    <td class="border border-blue-500 p-4">
+                        <button type="submit" name="comment" class="bg-blue-400 text-white px-4 py-2 rounded cursor-pointe hover:bg-blue-600 transition ease-out duration-150">Comments</button>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-    <div class="flex justify-center mt-8">
-        <form action="logout.php">
-            <button class="bg-red-500 text-white text-2xl px-8 py-4 rounded">LOG OUT</button>
-        </form>
-    </div>
+
     <script>
         function confirmDelete() {
             return confirm("Are you sure you want to delete this item?");

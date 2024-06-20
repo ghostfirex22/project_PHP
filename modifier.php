@@ -31,8 +31,8 @@ require 'selectForEdit.php';
         <label for="prix" class="w-full text-2xl text-center">Prix :</label>
         <input type="number" id="prix" name="prix" class="h-10 rounded-sm w-full px-2 text-gray-800" value="<?php echo $product['prix']; ?>">
 
-        <label for=""></label>
-        <input type="file" name="image" accept="image/*">
+        <label for="image" class="w-full  text-2xl text-center">Image :</label>
+        <input type="file" name="image" id="image" accept="image/*">
 
         <button type="submit" value="Upload Image" class="bg-yellow-500 text-gray-900 font-bold text-2xl mt-4 py-2 px-6 rounded hover:bg-yellow-600">Modifier</button>
     </form>

@@ -25,7 +25,6 @@
         header('Location: index.php');
         exit;
 
-        echo $target_file;
     }
     
 ?>
