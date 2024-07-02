@@ -34,11 +34,11 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <div class="w-full md:12 mx-auto p-4">
         <?php foreach ($posts as $post) : ?>
         <div class="bg-blue-200 shadow-md rounded-lg p-6 mb-4 ">
-            <div class="w-16 flex flex-row gap-7 py-5 ">
+            <div class="w-48 flex flex-row gap-7 py-5 ">
                 <img src="<?php echo $post['user_image'] ?>" alt="" class="w-full h-full object-cover rounded-full cursor-pointer">
-                <h1 class="text-4xl font-semibold mb-2 self-center"><?php echo $post['fullname']; ?></h1>
+                <h1 class="text-4xl font-semibold self-center"><?php echo $post['fullname']; ?></h1>
             </div>
-            <p class="text-white bg-blue-700 text-2xl py-10 px-2"><?php echo $post['description']; ?></p>
+            <p class="text-white bg-blue-700 text-2xl py-5 px-2"><?php echo $post['description']; ?></p>
         </div>
         <?php endforeach; ?>
     </div>

@@ -80,7 +80,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                     <td class="border border-blue-500 p-4"><?php echo $product['prix']; ?></td>
                     <td class="border border-blue-500 p-4 w-48">
                         <div class="w-full h-full">
-                            <image src="<?php echo $product['image']; ?>" alt="there is no image for this product" class="h-full w-full object-cover">
+                            <image src="<?php echo $product['image']; ?>" alt="there is no image for this product" class="h-full w-full object-cover rounded">
                         </div>
                     </td>
                     <?php
